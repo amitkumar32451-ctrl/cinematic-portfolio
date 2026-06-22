@@ -51,7 +51,7 @@ export default function JourneyTimeline() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="mb-4 text-center text-4xl font-bold tracking-[-0.03em] text-white md:text-5xl">
+          <h2 className="mb-4 text-center text-4xl font-bold tracking-tight text-white md:text-5xl font-serif">
             My Journey
           </h2>
           <p className="mx-auto mb-16 max-w-2xl text-center text-lg text-gray-400">

@@ -11,7 +11,11 @@ const navLinks = [
   { label: 'Projects', href: '#projects' },
 ];
 
-export default function Navbar() {
+interface NavbarProps {
+  onContactClick: () => void;
+}
+
+export default function Navbar({ onContactClick }: NavbarProps) {
   const { scrollY } = useScroll();
   const [hidden, setHidden] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -38,11 +42,17 @@ export default function Navbar() {
         className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#0d0d0d]/80 backdrop-blur-md"
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          {/* Logo */}
-          <a href="#" className="flex items-center gap-1.5 text-xl font-bold tracking-tight text-white">
-            Amiit<span className="text-[#ff6b35]">.ai</span>
-            <span className="h-1.5 w-1.5 rounded-full bg-[#ff6b35] animate-pulse" />
-          </a>
+          {/* Logo & Availability Status */}
+          <div className="flex items-center gap-4">
+            <a href="#" className="flex items-center gap-1.5 text-xl font-bold tracking-tight text-white">
+              Amiit<span className="text-[#ff6b35]">.ai</span>
+            </a>
+            
+            <div className="hidden items-center gap-1.5 rounded-full border border-green-500/20 bg-green-500/10 px-3 py-1 text-[10px] font-semibold text-green-400 sm:flex">
+              <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
+              Available for Q3 Automations
+            </div>
+          </div>
 
           {/* Desktop Nav Links */}
           <nav className="hidden items-center gap-8 md:flex">
@@ -59,12 +69,12 @@ export default function Navbar() {
 
           {/* CTA Connect Button */}
           <div className="hidden md:block">
-            <a
-              href="#contact"
+            <button
+              onClick={onContactClick}
               className="rounded-full bg-[#ff6b35] px-5 py-2.5 text-xs font-semibold text-white transition-all duration-300 hover:bg-[#ff804e] hover:shadow-lg hover:shadow-[#ff6b35]/25"
             >
               Let&apos;s Connect
-            </a>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -96,13 +106,15 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <a
-            href="#contact"
-            onClick={() => setIsOpen(false)}
+          <button
+            onClick={() => {
+              setIsOpen(false);
+              onContactClick();
+            }}
             className="mt-2 w-full rounded-full bg-[#ff6b35] py-3 text-center text-sm font-semibold text-white"
           >
             Let&apos;s Connect
-          </a>
+          </button>
         </div>
       </motion.div>
     </>

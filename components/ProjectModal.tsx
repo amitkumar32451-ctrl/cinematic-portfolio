@@ -14,6 +14,7 @@ interface Project {
 interface ProjectModalProps {
   project: Project | null;
   onClose: () => void;
+  onContactClick: () => void;
 }
 
 // Custom technical metadata mapping for each project to make the case studies look extremely rich
@@ -94,7 +95,7 @@ const projectMetadataMap: Record<
   },
 };
 
-export default function ProjectModal({ project, onClose }: ProjectModalProps) {
+export default function ProjectModal({ project, onClose, onContactClick }: ProjectModalProps) {
   // Prevent background scrolling when modal is open
   useEffect(() => {
     if (project) {
@@ -220,13 +221,15 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               </div>
 
               <div className="pt-4">
-                <a
-                  href="#contact"
-                  onClick={onClose}
+                <button
+                  onClick={() => {
+                    onClose();
+                    onContactClick();
+                  }}
                   className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#ff6b35] py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#ff804e] hover:shadow-lg hover:shadow-[#ff6b35]/25"
                 >
                   Ask Me About This Project <ExternalLink className="h-4 w-4" />
-                </a>
+                </button>
               </div>
             </div>
           </div>

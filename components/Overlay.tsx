@@ -71,6 +71,40 @@ export default function Overlay({ heroRef }: OverlayProps) {
         opacity: overlayVisibility,
       }}
     >
+      {/* Skip Animation Button */}
+      <motion.button
+        onClick={() => {
+          window.scrollTo({
+            top: window.innerHeight * 4.9,
+            behavior: 'smooth',
+          });
+        }}
+        style={{
+          position: 'absolute',
+          top: '2rem',
+          right: '2rem',
+          pointerEvents: 'auto',
+          background: 'rgba(255, 255, 255, 0.05)',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+          borderRadius: '9999px',
+          padding: '0.5rem 1.25rem',
+          fontSize: '0.75rem',
+          fontWeight: 600,
+          color: 'rgba(255, 255, 255, 0.6)',
+          cursor: 'pointer',
+          transition: 'background 0.2s, color 0.2s, border-color 0.2s',
+          backdropFilter: 'blur(4px)',
+          opacity: scrollPromptOpacity,
+        }}
+        whileHover={{
+          background: 'rgba(255, 255, 255, 0.1)',
+          color: '#ffffff',
+          borderColor: 'rgba(255, 255, 255, 0.3)',
+        }}
+      >
+        Skip Intro
+      </motion.button>
+
       {/* Phase 1 — Ghost Watermark */}
       <motion.div
         style={{

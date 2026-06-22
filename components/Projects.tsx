@@ -148,7 +148,11 @@ function ProjectCard({
   );
 }
 
-export default function Projects() {
+interface ProjectsProps {
+  onContactClick: () => void;
+}
+
+export default function Projects({ onContactClick }: ProjectsProps) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
@@ -159,7 +163,7 @@ export default function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-4xl md:text-5xl font-bold tracking-[-0.03em] text-center mb-4 text-white"
+          className="text-4xl md:text-5xl font-bold tracking-tight text-center mb-4 text-white font-serif"
         >
           Building In Public
         </motion.h2>
@@ -197,6 +201,7 @@ export default function Projects() {
       <ProjectModal
         project={selectedProject}
         onClose={() => setSelectedProject(null)}
+        onContactClick={onContactClick}
       />
     </section>
   );

@@ -16,7 +16,11 @@ const quickLinks = [
   { label: 'Contact', href: '#contact' },
 ];
 
-export default function Footer() {
+interface FooterProps {
+  onContactClick: () => void;
+}
+
+export default function Footer({ onContactClick }: FooterProps) {
   return (
     <footer id="contact" className="bg-[#0a0a0a] border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6 py-16 md:py-24">
@@ -47,15 +51,28 @@ export default function Footer() {
               Quick Links
             </h3>
             <div className="flex flex-col gap-3">
-              {quickLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-gray-400 hover:text-white transition-colors text-sm"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {quickLinks.map((link) => {
+                if (link.label === 'Contact') {
+                  return (
+                    <button
+                      key={link.label}
+                      onClick={onContactClick}
+                      className="text-left text-gray-400 hover:text-white transition-colors text-sm"
+                    >
+                      {link.label}
+                    </button>
+                  );
+                }
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
             </div>
           </div>
 
@@ -64,12 +81,17 @@ export default function Footer() {
             <h3 className="text-sm font-semibold text-white uppercase tracking-widest mb-6">
               Contact
             </h3>
-            <a
-              href="mailto:amitkumar32451@gmail.com"
-              className="text-gray-400 hover:text-white text-sm"
+            <button
+              onClick={onContactClick}
+              className="mb-4 inline-flex items-center gap-1.5 rounded-xl bg-white/5 border border-white/10 px-4 py-2 text-xs font-semibold text-[#ff6b35] transition-colors hover:bg-white/10"
             >
-              amitkumar32451@gmail.com
-            </a>
+              Send Message
+            </button>
+            <p className="text-gray-400 text-sm">
+              <a href="mailto:amitkumar32451@gmail.com" className="hover:text-white transition-colors">
+                amitkumar32451@gmail.com
+              </a>
+            </p>
             <p className="text-gray-400 text-sm mt-3">@amiit_ai</p>
             <p className="text-gray-400 text-sm mt-3">Gurgaon, India</p>
           </div>
