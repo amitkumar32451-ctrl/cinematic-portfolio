@@ -10,6 +10,8 @@ import ServicesGrid from '@/components/ServicesGrid';
 import JourneyTimeline from '@/components/JourneyTimeline';
 import Projects from '@/components/Projects';
 import Footer from '@/components/Footer';
+import ContactModal from '@/components/ContactModal';
+import ProjectInquiryModal from '@/components/ProjectInquiryModal';
 
 export default function Home() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -31,6 +33,10 @@ export default function Home() {
       <JourneyTimeline />
       <Projects />
       <Footer />
+
+      {/* Global Contact & Inquiry Modals */}
+      <ContactModal />
+      <ProjectInquiryModal />
     </main>
   );
 }

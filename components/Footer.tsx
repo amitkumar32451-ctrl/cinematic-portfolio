@@ -47,15 +47,24 @@ export default function Footer() {
               Quick Links
             </h3>
             <div className="flex flex-col gap-3">
-              {quickLinks.map((link) => (
-                <a
-                  key={link.label}
-                  href={link.href}
-                  className="text-gray-400 hover:text-white transition-colors text-sm"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {quickLinks.map((link) => {
+                const isContact = link.label === 'Contact';
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={(e) => {
+                      if (isContact) {
+                        e.preventDefault();
+                        window.dispatchEvent(new CustomEvent('open-contact-modal'));
+                      }
+                    }}
+                    className="text-gray-400 hover:text-white transition-colors text-sm"
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
             </div>
           </div>
 

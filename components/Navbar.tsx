@@ -59,12 +59,12 @@ export default function Navbar() {
 
           {/* CTA Connect Button */}
           <div className="hidden md:block">
-            <a
-              href="#contact"
+            <button
+              onClick={() => window.dispatchEvent(new CustomEvent('open-contact-modal'))}
               className="rounded-full bg-[#ff6b35] px-5 py-2.5 text-xs font-semibold text-white transition-all duration-300 hover:bg-[#ff804e] hover:shadow-lg hover:shadow-[#ff6b35]/25"
             >
               Let&apos;s Connect
-            </a>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -96,13 +96,15 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <a
-            href="#contact"
-            onClick={() => setIsOpen(false)}
+          <button
+            onClick={() => {
+              setIsOpen(false);
+              window.dispatchEvent(new CustomEvent('open-contact-modal'));
+            }}
             className="mt-2 w-full rounded-full bg-[#ff6b35] py-3 text-center text-sm font-semibold text-white"
           >
             Let&apos;s Connect
-          </a>
+          </button>
         </div>
       </motion.div>
     </>

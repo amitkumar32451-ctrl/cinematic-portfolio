@@ -220,13 +220,19 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               </div>
 
               <div className="pt-4">
-                <a
-                  href="#contact"
-                  onClick={onClose}
+                <button
+                  onClick={() => {
+                    onClose();
+                    window.dispatchEvent(
+                      new CustomEvent('open-project-inquiry', {
+                        detail: { projectName: project.title },
+                      })
+                    );
+                  }}
                   className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#ff6b35] py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#ff804e] hover:shadow-lg hover:shadow-[#ff6b35]/25"
                 >
                   Ask Me About This Project <ExternalLink className="h-4 w-4" />
-                </a>
+                </button>
               </div>
             </div>
           </div>
