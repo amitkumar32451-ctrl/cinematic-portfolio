@@ -114,7 +114,7 @@ export default function AboutMeSplit() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <h2 className="mb-6 text-3xl font-bold tracking-tight text-white md:text-4xl font-serif">
+            <h2 className="mb-6 text-3xl font-bold tracking-[-0.03em] text-white md:text-4xl">
               My Journey Into AI
             </h2>
             <div className="space-y-4 text-gray-300 leading-relaxed">
