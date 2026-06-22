@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
+import Navbar from '@/components/Navbar';
 import ScrollyCanvas from '@/components/ScrollyCanvas';
 import Overlay from '@/components/Overlay';
 import TagScroll from '@/components/TagScroll';
@@ -15,6 +16,8 @@ export default function Home() {
 
   return (
     <main>
+      <Navbar />
+
       {/* Hero Scroll Section */}
       <div ref={heroRef} style={{ position: 'relative', height: '500vh' }}>
         <ScrollyCanvas heroRef={heroRef} />

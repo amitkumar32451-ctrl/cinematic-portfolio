@@ -1,16 +1,16 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useMotionTemplate, Variants } from 'framer-motion';
 import { Search, Terminal, BookOpen, Video, Zap, Cpu } from 'lucide-react';
 import { ElementType } from 'react';
 
-interface ServiceCard {
+interface ServiceCardData {
   icon: ElementType;
   title: string;
   description: string;
 }
 
-const services: ServiceCard[] = [
+const services: ServiceCardData[] = [
   {
     icon: Search,
     title: 'AI Tool Reviews',
@@ -61,6 +61,50 @@ const itemVariants = {
   },
 };
 
+// Spotlight Service Card component
+function ServiceCard({ service, variants }: { service: ServiceCardData; variants: Variants }) {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
+
+  const Icon = service.icon;
+
+  return (
+    <motion.div
+      variants={variants}
+      onMouseMove={handleMouseMove}
+      className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#1a1a1a] p-8 transition-all duration-300 hover:-translate-y-1 hover:border-white/30"
+    >
+      {/* Spotlight hover effect */}
+      <motion.div
+        className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          background: useMotionTemplate`
+            radial-gradient(
+              300px circle at ${mouseX}px ${mouseY}px,
+              rgba(255, 107, 53, 0.15),
+              transparent 80%
+            )
+          `,
+        }}
+      />
+
+      <div className="relative z-10">
+        <div className="mb-4 text-[#ff6b35]">
+          <Icon className="h-8 w-8" strokeWidth={1.5} />
+        </div>
+        <h3 className="mb-3 text-xl font-semibold text-white">{service.title}</h3>
+        <p className="text-sm leading-relaxed text-gray-400">{service.description}</p>
+      </div>
+    </motion.div>
+  );
+}
+
 export default function ServicesGrid() {
   return (
     <section id="services" className="py-24 md:py-32">
@@ -86,25 +130,11 @@ export default function ServicesGrid() {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {services.map((service, i) => {
-            const Icon = service.icon;
-            return (
-              <motion.div
-                key={i}
-                variants={itemVariants}
-                className="rounded-2xl border border-white/10 bg-[#1a1a1a] p-8 transition-all duration-300 hover:-translate-y-1 hover:border-white/30"
-              >
-                <div className="mb-4 text-[#ff6b35]">
-                  <Icon className="h-8 w-8" strokeWidth={1.5} />
-                </div>
-                <h3 className="mb-3 text-xl font-semibold text-white">{service.title}</h3>
-                <p className="text-sm leading-relaxed text-gray-400">{service.description}</p>
-              </motion.div>
-            );
-          })}
+          {services.map((service, i) => (
+            <ServiceCard key={i} service={service} variants={itemVariants} />
+          ))}
         </motion.div>
       </div>
     </section>
   );
 }
-
