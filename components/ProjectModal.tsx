@@ -221,7 +221,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
               <div className="pt-4">
                 <a
-                  href={`mailto:amitkumar32451@gmail.com?subject=Inquiry regarding ${project.title} — Amiit.ai&body=Hi Amit,%0D%0A%0D%0AI saw your project "${project.title}" on your portfolio and would like to learn more about...`}
+                  href="#contact"
                   onClick={onClose}
                   className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#ff6b35] py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#ff804e] hover:shadow-lg hover:shadow-[#ff6b35]/25"
                 >
