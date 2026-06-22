@@ -270,6 +270,26 @@ export default function Overlay({ heroRef }: OverlayProps) {
           />
         </motion.div>
       </motion.div>
+
+      {/* Floating Glassmorphic Skip Visuals Button */}
+      <motion.button
+        onClick={() => {
+          const aboutSection = document.getElementById('about');
+          aboutSection?.scrollIntoView({ behavior: 'smooth' });
+        }}
+        style={{
+          position: 'absolute',
+          bottom: '2.5rem',
+          right: '2.5rem',
+          pointerEvents: 'auto', // Override parent's pointer-events: none to make button clickable
+          zIndex: 40,
+        }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        className="rounded-full border border-white/10 bg-white/5 backdrop-blur-md px-4 py-2 text-xs font-semibold text-gray-400 hover:text-white hover:border-white/30 transition-all duration-300 flex items-center gap-1.5 cursor-pointer"
+      >
+        Skip Visuals <span className="text-[#ff6b35]">↓</span>
+      </motion.button>
     </motion.div>
   );
 }
