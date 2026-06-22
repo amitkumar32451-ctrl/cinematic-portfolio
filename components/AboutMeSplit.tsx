@@ -96,7 +96,7 @@ export default function AboutMeSplit() {
   }, [handleIntersection]);
 
   return (
-    <section className="py-24 md:py-32">
+    <section id="about" className="py-24 md:py-32">
       <div ref={sectionRef} className="mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 gap-16 md:grid-cols-5">
           {/* Left Column — Stats */}

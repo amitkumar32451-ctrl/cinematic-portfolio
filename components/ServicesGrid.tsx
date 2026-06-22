@@ -1,41 +1,43 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { Search, Terminal, BookOpen, Video, Zap, Cpu } from 'lucide-react';
+import { ElementType } from 'react';
 
 interface ServiceCard {
-  icon: string;
+  icon: ElementType;
   title: string;
   description: string;
 }
 
 const services: ServiceCard[] = [
   {
-    icon: '🔍',
+    icon: Search,
     title: 'AI Tool Reviews',
     description: 'Testing and reviewing AI tools so people can find what actually works.',
   },
   {
-    icon: '✨',
+    icon: Terminal,
     title: 'Prompt Engineering',
     description: 'Creating effective prompts for content creation, productivity, and learning.',
   },
   {
-    icon: '📚',
+    icon: BookOpen,
     title: 'AI Education',
     description: 'Breaking down AI concepts into simple, practical explanations.',
   },
   {
-    icon: '🎬',
+    icon: Video,
     title: 'Content Creation',
     description: 'Short-form videos focused on AI trends, tools, and workflows.',
   },
   {
-    icon: '⚡',
+    icon: Zap,
     title: 'AI Productivity',
     description: 'Workflows that help students and professionals save time.',
   },
   {
-    icon: '🤖',
+    icon: Cpu,
     title: 'Automation',
     description: 'Exploring AI agents, automations, and future-ready workflows.',
   },
@@ -61,7 +63,7 @@ const itemVariants = {
 
 export default function ServicesGrid() {
   return (
-    <section className="py-24 md:py-32">
+    <section id="services" className="py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -84,19 +86,25 @@ export default function ServicesGrid() {
           whileInView="visible"
           viewport={{ once: true }}
         >
-          {services.map((service, i) => (
-            <motion.div
-              key={i}
-              variants={itemVariants}
-              className="rounded-2xl border border-white/10 bg-[#1a1a1a] p-8 transition-all duration-300 hover:-translate-y-1 hover:border-white/30"
-            >
-              <div className="mb-4 text-3xl">{service.icon}</div>
-              <h3 className="mb-3 text-xl font-semibold text-white">{service.title}</h3>
-              <p className="text-sm leading-relaxed text-gray-400">{service.description}</p>
-            </motion.div>
-          ))}
+          {services.map((service, i) => {
+            const Icon = service.icon;
+            return (
+              <motion.div
+                key={i}
+                variants={itemVariants}
+                className="rounded-2xl border border-white/10 bg-[#1a1a1a] p-8 transition-all duration-300 hover:-translate-y-1 hover:border-white/30"
+              >
+                <div className="mb-4 text-[#ff6b35]">
+                  <Icon className="h-8 w-8" strokeWidth={1.5} />
+                </div>
+                <h3 className="mb-3 text-xl font-semibold text-white">{service.title}</h3>
+                <p className="text-sm leading-relaxed text-gray-400">{service.description}</p>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </section>
   );
 }
+

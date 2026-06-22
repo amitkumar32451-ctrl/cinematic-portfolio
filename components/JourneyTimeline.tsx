@@ -43,7 +43,7 @@ const timelineItems: TimelineItem[] = [
 
 export default function JourneyTimeline() {
   return (
-    <section className="py-24 md:py-32">
+    <section id="journey" className="py-24 md:py-32">
       <div className="relative mx-auto max-w-4xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 40 }}

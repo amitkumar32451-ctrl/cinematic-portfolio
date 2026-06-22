@@ -14,6 +14,13 @@ export default function Overlay({ heroRef }: OverlayProps) {
     offset: ['start start', 'end end'],
   });
 
+  // Scroll indicator opacity (fades out rapidly on scroll)
+  const scrollPromptOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.05],
+    [1, 0]
+  );
+
   // === PHASE 1 — Ghost Watermark (0.00–0.28) ===
   const phase1Opacity = useTransform(
     scrollYProgress,
@@ -204,6 +211,64 @@ export default function Overlay({ heroRef }: OverlayProps) {
         >
           AI Tools · AI Workflows · Real Use Cases
         </p>
+      </motion.div>
+
+      {/* Floating Animated Scroll Prompt */}
+      <motion.div
+        style={{
+          position: 'absolute',
+          bottom: '2.5rem',
+          left: '50%',
+          x: '-50%',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '0.75rem',
+          opacity: scrollPromptOpacity,
+          color: 'rgba(255, 255, 255, 0.4)',
+        }}
+      >
+        <span
+          style={{
+            fontSize: '0.65rem',
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            fontWeight: 600,
+            color: 'rgba(255, 255, 255, 0.5)',
+          }}
+        >
+          Scroll to explore
+        </span>
+        <motion.div
+          animate={{
+            y: [0, 6, 0],
+          }}
+          transition={{
+            duration: 1.8,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+          style={{
+            width: '18px',
+            height: '28px',
+            borderRadius: '9px',
+            border: '1.5px solid rgba(255, 255, 255, 0.3)',
+            position: 'relative',
+          }}
+        >
+          <div
+            style={{
+              width: '3px',
+              height: '6px',
+              borderRadius: '1.5px',
+              background: '#ff6b35',
+              position: 'absolute',
+              top: '5px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+            }}
+          />
+        </motion.div>
       </motion.div>
     </motion.div>
   );

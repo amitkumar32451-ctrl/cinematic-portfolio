@@ -1,24 +1,24 @@
 import React from 'react';
 
 const socialLinks = [
-  { label: 'LinkedIn', href: '#' },
-  { label: 'Instagram', href: '#' },
-  { label: 'YouTube', href: '#' },
-  { label: 'GitHub', href: '#' },
+  { label: 'LinkedIn', href: 'https://linkedin.com/in/amiitai' },
+  { label: 'Instagram', href: 'https://instagram.com/amiit_ai' },
+  { label: 'YouTube', href: 'https://youtube.com/@amiit_ai' },
+  { label: 'GitHub', href: 'https://github.com/amiitai' },
 ];
 
 const quickLinks = [
   { label: 'Home', href: '#' },
-  { label: 'About', href: '#' },
-  { label: 'Services', href: '#' },
-  { label: 'Journey', href: '#' },
-  { label: 'Projects', href: '#' },
-  { label: 'Contact', href: '#' },
+  { label: 'About', href: '#about' },
+  { label: 'Services', href: '#services' },
+  { label: 'Journey', href: '#journey' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Contact', href: '#contact' },
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0a0a0a] border-t border-white/10">
+    <footer id="contact" className="bg-[#0a0a0a] border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6 py-16 md:py-24">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Left Column - Brand & Social */}
